@@ -1,5 +1,3 @@
-import clsx from 'clsx';
-
 const BoldIcon = () => (
   <svg
     className="fill-white	cursor-pointer"
@@ -39,59 +37,4 @@ const UnderlineIcon = () => (
   </svg>
 );
 
-const data = [
-  {
-    action: 'bold',
-    icon: <BoldIcon />,
-  },
-  {
-    action: 'italic',
-    icon: <ItalicIcon />,
-  },
-  {
-    action: 'underline',
-    icon: <UnderlineIcon />,
-  },
-];
-
-export type Action = 'bold' | 'italic' | 'underline';
-
-type Props = {
-  isShow: boolean;
-  top: number;
-  left: number;
-  activeActions: Action[];
-	handleActionClick: (action: Action, isActive: boolean) => void;
-};
-
-const FloatToolbar = ({ isShow, top, left, activeActions, handleActionClick }: Props) => (
-  <div
-    className={clsx(
-      'bg-gradient-to-r from-slate-900 to-slate-700 absolute rounded px-2 pt-2 -translate-y-full -translate-x-2/4	',
-      [isShow ? 'block' : 'hidden']
-    )}
-    style={{
-      top: top + 'px',
-      left: left + 'px',
-    }}
-  >
-    {data.map((item) => {
-			const action = item.action as Action;
-      const isActive = activeActions.includes(action);
-      return (
-        <button
-          type="button"
-          className={clsx('bg-transparent px-1 hover:opacity-100', [
-            isActive ? 'opacity-100' : 'opacity-50',
-          ])}
-          key={item.action}
-					onClick={() => handleActionClick(action, isActive)}
-        >
-          {item.icon}
-        </button>
-      );
-    })}
-  </div>
-);
-
-export default FloatToolbar;
+export { BoldIcon, ItalicIcon, UnderlineIcon };

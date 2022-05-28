@@ -1,4 +1,4 @@
-import FloatToolbarExample from '../features/float-toolbar-example'
+import FloatToolbarExample from '../features/floatToolbarExample'
 
 const FloatToolbarPage = () => {
 	return (
