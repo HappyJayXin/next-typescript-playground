@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { remove } from 'lodash';
 
 import data from './data';
+import useHotkeys from '../../hooks/useHotkey';
 
 export type Action = 'bold' | 'italic' | 'underline';
 
@@ -13,49 +14,66 @@ type Props = {
 };
 
 const FloatToolbar = ({ isShow, top, left }: Props) => {
-	useEffect(() => {
-		const selection = document.getSelection();
-		if (isShow) {
-			updateActionStatus(selection);
-		} else {
+  useEffect(() => {
+    const selection = document.getSelection();
+    if (isShow) {
+      updateActionStatus(selection);
+    }
+  }, [isShow]);
 
-		}
-	}, [isShow]);
+  const updateActionStatus = (selection: Selection) => {
+    const actions: Action[] = ['bold', 'underline', 'italic'];
+    const cssText = getCssText(selection);
 
-	const updateActionStatus = (selection: Selection) => {
-		const actions: Action[] = ['bold', 'underline', 'italic'];
-		const cssText = getCssText(selection);
+    actions.forEach((action) => {
+      const isActive = cssText.includes(action);
+      toggleActionState(action, isActive);
+    });
+  };
 
-		actions.forEach((action) => {
-			const isActive = cssText.includes(action);
-			toggleActionState(action, isActive);
-		});
-	};
-
-	const getCssText = (selection: Selection) => {
-		const parentEl = selection.anchorNode.parentElement;
-		const extentEl = selection.focusNode.parentElement;
-		return parentEl.style.cssText + extentEl.style.cssText;
-	};
+  const getCssText = (selection: Selection) => {
+    const parentEl = selection.anchorNode.parentElement;
+    const extentEl = selection.focusNode.parentElement;
+    return parentEl.style.cssText + extentEl.style.cssText;
+  };
 
   const handleActionClick = (action: Action, isActive: boolean) => {
     toggleActionState(action, !isActive);
     exec(action);
   };
 
-	const [activeActions, setActiveActions] = useState<Action[]>([]);
+  const [activeActions, setActiveActions] = useState<Action[]>([]);
 
-	const toggleActionState = (action: Action, isActive: boolean) => {
-		if (isActive) {
-			setActiveActions((prev) => [...prev, action]);
-		} else {
-			setActiveActions((prev) => remove(prev, (n) => n !== action));
-		}
-	};
+  const toggleActionState = (action: Action, isActive: boolean) => {
+    if (isActive) {
+      setActiveActions((prev) => [...prev, action]);
+    } else {
+      setActiveActions((prev) => remove(prev, (n) => n !== action));
+    }
+  };
 
-	const exec = (cmd: Action, param = null) => {
+  const exec = (cmd: Action, param = null) => {
     document.execCommand('styleWithCSS', false);
     document.execCommand(cmd, false, param);
+  };
+
+  const { pushHotkey } = useHotkeys();
+
+  useEffect(() => {
+    pushHotkey('ctrl+b', () => {
+			onHotKey('bold');
+    });
+    pushHotkey('ctrl+i', () => {
+			onHotKey('italic');
+    });
+    pushHotkey('ctrl+u', () => {
+			onHotKey('underline');
+    });
+  }, [activeActions]);
+
+  const onHotKey = (action: Action) => {
+    const isActive = activeActions.includes(action);
+		handleActionClick(action, isActive)
   };
 
   return (

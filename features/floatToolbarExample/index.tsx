@@ -1,4 +1,4 @@
-import FloatToolbar, { useFloatToolbar } from '../../components/floatToolbar';
+import FloatToolbar, { useFloatToolbar } from '../../components/FloatToolbar';
 
 const FloatToolbarExample = () => {
   const { moveToolbar, isShow, rects } = useFloatToolbar();
@@ -14,8 +14,42 @@ const FloatToolbarExample = () => {
       >
         <div>
           選取下面文字並標記<span style={{ fontWeight: 'bold' }}>粗體</span>、
-          <span style={{ textDecorationLine: 'underline' }}>底線</span>或
-          <span style={{ fontStyle: 'italic' }}>斜體</span>。
+          <span style={{ fontStyle: 'italic' }}>斜體</span>或
+          <span style={{ textDecorationLine: 'underline' }}>底線</span>。
+        </div>
+				<br />
+        <div>
+          選取文字按下{' '}
+          <span
+            className="bg-slate-300 text-slate-600 rounded shadow-2xl p-1"
+            style={{
+              boxShadow: 'rgba(0, 0, 0, 0.3) 0px -2px 0px inset, rgba(0, 0, 0, 0.4) 0px 1px 1px',
+            }}
+          >
+            ctrl + b
+          </span>{' '}
+          快捷鍵標示<span style={{ fontWeight: 'bold' }}>粗體</span>。<br /><br />
+          選取文字按下{' '}
+          <span
+            className="bg-slate-300 text-slate-600 rounded shadow-2xl p-1"
+            style={{
+              boxShadow: 'rgba(0, 0, 0, 0.3) 0px -2px 0px inset, rgba(0, 0, 0, 0.4) 0px 1px 1px',
+            }}
+          >
+            ctrl + i
+          </span>{' '}
+          快捷鍵標示<span style={{ fontStyle: 'italic' }}>斜體</span>。<br /><br />
+          選取文字按下{' '}
+          <span
+            className="bg-slate-300 text-slate-600 rounded shadow-2xl p-1"
+            style={{
+              boxShadow: 'rgba(0, 0, 0, 0.3) 0px -2px 0px inset, rgba(0, 0, 0, 0.4) 0px 1px 1px',
+            }}
+          >
+            ctrl + u
+          </span>{' '}
+          快捷鍵標示
+          <span style={{ textDecorationLine: 'underline' }}>底線</span>。
         </div>
         <hr className="my-3" />
         <p className="mb-6">
