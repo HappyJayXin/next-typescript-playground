@@ -5,6 +5,10 @@ const items = [
     href: '/float-toolbar',
     name: 'Float Toolbar',
   },
+	{
+		href: '/variant-theme',
+		name: 'Variant Theme',
+	},
 ];
 
 const IndexPage = () => (
