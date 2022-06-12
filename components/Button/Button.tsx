@@ -1,18 +1,16 @@
 import { useContext, useState, useEffect } from 'react';
 import { find } from 'lodash';
 import clsx from 'clsx';
+
 import { ThemeContext } from './theme/context';
 
 type Props = {
-  variant: 'default' | string;
+  variant: string;
   children: React.ReactChild;
 };
 
-// TODO: 移除 any type
-// TODO: variant type
-
 const Button = ({ variant, children }: Props) => {
-  const theme = useContext(ThemeContext) as any;
+  const theme = useContext(ThemeContext);
 	const buttonThemes = theme.components.Button.variants;
 
   const [className, setClassName] = useState('');
@@ -25,7 +23,11 @@ const Button = ({ variant, children }: Props) => {
 
       default:
         const buttonTheme = find(buttonThemes, (theme) => theme.props.variant === variant);
-        setClassName(buttonTheme?.className ?? '');
+				if (buttonTheme) {
+					setClassName(buttonTheme.className);
+				} else {
+					throw new Error(`The variant ${variant} you use does not exist.`);
+				}
         break;
     }
   }, [variant, buttonThemes]);

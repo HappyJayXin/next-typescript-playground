@@ -1,11 +1,12 @@
-import { ThemeContext } from './context'
+import { ThemeContext } from './context';
+import type { Theme } from './context';
 
-type Props<T> = {
-	theme: T;
+type Props = {
+	theme: Theme;
 	children: React.ReactChild;
 }
 
-const Provider = <T,>({ theme, children }: Props<T>) => (
+const Provider = ({ theme, children }: Props) => (
 	<ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
 );
 
