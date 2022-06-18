@@ -1,29 +1,43 @@
 {
-	"private": true,
-	"scripts": {
-		"dev": "next",
-		"build": "next build",
-		"start": "next start",
-		"type-check": "tsc",
-		"export-mac": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll",
-		"export": "next build && next export && type nul > out/.nojekyll",
-		"deploy": "gh-pages -d out -t true"
-	},
-	"dependencies": {
-		"clsx": "^1.1.1",
-		"lodash": "^4.17.21",
-		"next": "^12.1.7-canary.19",
-		"react": "18.1.0",
-		"react-dom": "18.1.0"
-	},
-	"devDependencies": {
-		"@types/node": "^12.12.21",
-		"@types/react": "18.0.9",
-		"@types/react-dom": "18.0.5",
-		"autoprefixer": "^10.4.7",
-		"gh-pages": "^4.0.0",
-		"postcss": "^8.4.14",
-		"tailwindcss": "^3.0.24",
-		"typescript": "4.7.3"
-	}
+  "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc",
+    "export-mac": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll",
+    "export": "next build && next export && type nul > out/.nojekyll",
+    "deploy": "gh-pages -d out -t true"
+  },
+  "dependencies": {
+    "clsx": "^1.1.1",
+    "lodash": "^4.17.21",
+    "next": "^12.1.7-canary.19",
+    "react": "18.1.0",
+    "react-dom": "18.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "@types/react": "18.0.9",
+    "@types/react-dom": "18.0.5",
+    "autoprefixer": "^10.4.7",
+    "gh-pages": "^4.0.0",
+    "husky": "1.1.2",
+    "lint-staged": "7.2.2",
+    "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
+    "tailwindcss": "^3.0.24",
+    "typescript": "4.7.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }
