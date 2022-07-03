@@ -14,7 +14,8 @@
     "lodash": "^4.17.21",
     "next": "^12.1.7-canary.19",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "react-spring": "^9.4.5"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",

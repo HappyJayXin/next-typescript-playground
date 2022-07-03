@@ -1,18 +1,23 @@
 import Link from 'next/link';
+import Center from '../components/Center';
 
 const items = [
   {
     href: '/float-toolbar',
-    name: 'Float Toolbar',
+    name: 'Float Toolbar'
   },
-	{
-		href: '/variant-theme',
-		name: 'Variant Theme',
-	},
+  {
+    href: '/variant-theme',
+    name: 'Variant Theme'
+  },
+  {
+    href: '/react-spring',
+    name: 'React Spring'
+  }
 ];
 
 const IndexPage = () => (
-  <div className="grid place-items-center h-screen">
+  <Center>
     <div className="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
       {items.map((item) => (
         <Link href={item.href}>
@@ -22,7 +27,7 @@ const IndexPage = () => (
         </Link>
       ))}
     </div>
-  </div>
+  </Center>
 );
 
 export default IndexPage;
