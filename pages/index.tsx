@@ -13,6 +13,10 @@ const items = [
   {
     href: '/react-spring',
     name: 'React Spring'
+  },
+  {
+    href: '/login-form',
+    name: 'Login Form'
   }
 ];
 

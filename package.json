@@ -9,12 +9,17 @@
     "export": "next build && next export && type nul > out/.nojekyll",
     "deploy": "gh-pages -d out -t true",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "generate-css": "postcss styles/globals.css -o public/globals.css --watch",
+    "test-storybook": "test-storybook"
   },
   "dependencies": {
+    "@storybook/jest": "^0.0.10",
+    "@storybook/node-logger": "^6.5.9",
     "clsx": "^1.1.1",
     "lodash": "^4.17.21",
     "next": "^12.1.7-canary.19",
+    "postcss-cli": "^10.0.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-spring": "^9.4.5"
@@ -25,6 +30,7 @@
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-interactions": "^6.5.9",
     "@storybook/addon-links": "^6.5.9",
+    "@storybook/addon-postcss": "^3.0.0-alpha.1",
     "@storybook/builder-webpack5": "^6.5.9",
     "@storybook/manager-webpack5": "^6.5.9",
     "@storybook/react": "^6.5.9",
