@@ -1,8 +1,17 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import '../styles/globals.css';
+import type { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+if (typeof window === 'undefined') {
+  const { server } = require('../mocks/server');
+  server.listen();
+} else {
+  const { worker } = require('../mocks/browser');
+  worker.start();
 }
 
-export default MyApp
+function MyApp({ Component, pageProps }: AppProps) {
+  // setupMock();
+  return <Component {...pageProps} />;
+}
+
+export default MyApp;
